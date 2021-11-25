@@ -15,7 +15,7 @@ class NeuralNet {
         my @x = @$input;
         @x.unshift(1);
         for @x.kv -> $ix, $x {
-          @!weight[$ix] += $eta * $x * $result.sign;
+          @!weight[$ix] += $!eta * $x * $result.sign;
         }
       }   
     } 
