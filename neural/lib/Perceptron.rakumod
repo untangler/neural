@@ -34,14 +34,20 @@ class Perceptron {
       }   
     } 
   }
-  method apply(@inputs) { ??? }
+  method apply(@inputs) { 
+    gather for @inputs -> $example {
+      my ($input, $output) = $example.kv; 
+      my $result = self!compute($input);
+      take $result;
+    }
+  }
 
   method test(@rules) { 
     for @rules -> $rule {
       $!nTests++;
       my ($input, $output) = $rule.kv; 
       my $result = self!compute($input);
-      say 'expectation: ', $rule, ' vs reality: ', $result;
+     # say 'expectation: ', $rule, ' vs reality: ', $result;
       $!nSuccess++ if $result == $output; 
     }
   }

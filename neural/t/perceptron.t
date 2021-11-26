@@ -7,6 +7,13 @@ use lib <lib>;
 use-ok 'Perceptron';
 use Perceptron;
 
+#constant @trainingSet = (
+  #[1, 1] => -1,
+  #[1, -1] => 1,
+  #[-1, 1] => 1,
+  #[-1, -1] => 1,
+#);
+
 constant @trainingSet = (
   [1, 1] => -1,
   [1, -1] => 1,
@@ -22,6 +29,8 @@ $perceptron.test(@trainingSet);
 my ($nTests, $sessions, $nSuccess) = $perceptron.getResults();
 is $nTests, 4, 'number of tests';
 is $nSuccess, 4, 'number of successes';
-print 'number of succesful tests ', $nSuccess, "\n";
-print 'number of training sessions ', $sessions , "\n";
+#print 'number of succesful tests ', $nSuccess, "\n";
+#print 'number of training sessions ', $sessions , "\n";
 $perceptron.showweightArrs;
+
+print $perceptron.apply(@trainingSet);
